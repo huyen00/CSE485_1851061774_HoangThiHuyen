@@ -278,7 +278,7 @@ $lienhe = mysqli_fetch_all(mysqli_query($conn, $sql6));
             </div>
             <!-- ----------------------- THÊM DỮ LIỆU VÀO BẢNG HỌC VẤN -------------- -->
             <!-- --------Thiết kế form ADD----------- -->
-            <button id="addeducation" name="" class="btn btn-primary mb-5">Add</button>
+            <button id="addeducation" name="" class="btn btn-primary mb-5">Thêm</button>
             <div class="container">
                 <div class="row mt-5">
                     <form action="" method="POST" role="form" id="addedu" class="col-md-6">
@@ -291,7 +291,7 @@ $lienhe = mysqli_fetch_all(mysqli_query($conn, $sql6));
                             <input type="text" name="" id="text" placeholder="Học vấn" class="w-50 ml-3">
                         </div>
                     </form>
-                    <button id="btnaddedu" name="" class="btn btn-primary mb-5 ml-5">Save</button>
+                    <button id="btnaddedu" name="" class="btn btn-primary mb-5 ml-5">Lưu</button>
                 </div>
             </div>
             <!-- -----------------    SỬA DỮ LIỆU TRONG BẢNG HỌC VẤN  ----------------------------------- -->
@@ -415,6 +415,7 @@ $lienhe = mysqli_fetch_all(mysqli_query($conn, $sql6));
 
                 </div>
             </div>
+            <!-- ----------------- ----THÊM DỰ ÁN ------------------------------------ -->
             <button id="addproject" name="" class="btn btn-primary mb-5">Thêm</button>
             <div class="container addpro">
                 <div class="row mt-5">
@@ -427,7 +428,6 @@ $lienhe = mysqli_fetch_all(mysqli_query($conn, $sql6));
                             <label for="">Mô tả : </label>
                             <input type="text" name="" id="description" placeholder="Mô tả " class="w-50 ml-3">
                         </div>
-                        <form action="" method="post"></form>
                         <div class="form-group">
                             <label for="">Vị trí : </label>
                             <input type="text" name="" id="location" placeholder="Vị trí " class="w-50 ml-3">
@@ -440,7 +440,7 @@ $lienhe = mysqli_fetch_all(mysqli_query($conn, $sql6));
                     <button id="btnaddpro" name="" class="btn btn-primary mb-5 ml-5">Lưu</button>
                 </div>
             </div>
-            <!-- ----------------- ----THÊM DỰ ÁN ------------------------------------ -->
+            
 
         </section>
         <!-- -------------------------------    XEM TIN NHẮN    --------------------- -->

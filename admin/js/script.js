@@ -1,3 +1,4 @@
+//--------------------------  EDIT PROFILE    -----------------------------
 $(document).ready(function () {
     $('.editpro').hide();
     $('#editprofile').click(function () {
@@ -5,7 +6,7 @@ $(document).ready(function () {
     })
     $('#btneditpro').click(function () {
         $.ajax({
-            url: 'http://localhost/btl/admin/controller/update-profile.php',
+            url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/update-profile.php',
             dataType: 'text',
             data: {
                 city: $('#city').val(),
@@ -33,17 +34,17 @@ $(document).ready(function () {
     })
 
 
-    //  --------ADD EDUCATION ----------
+    //  ------------------------------      ADD EDUCATION -  ------------------
 
     $('#addedu').hide();
     $('#btnaddedu').hide()
     $('#addeducation').click(function () {
-        $('#addedu').show();
-        $('#btnaddedu').show()
+        $('#addedu').toggle();
+        $('#btnaddedu').toggle()
     })
     $('#btnaddedu').click(function () {
         $.ajax({
-            url: 'http://localhost/btl/admin/controller/add-education.php',
+            url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/add-education.php',
             dataType: 'text',
             data: {
                 date: $('#date').val(),
@@ -84,7 +85,7 @@ $(document).ready(function () {
  
          $('#btneditedu').click(function () {
              $.ajax({
-                 url: 'http://localhost/btl/admin/controller/edit-education.php',
+                 url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/edit-education.php',
                  type: 'post',
                  data: {
                      education: $('#ededu').val(),
@@ -114,12 +115,12 @@ $(document).ready(function () {
      
      
  
-    //Xóa dữ liệu trong bảng education
+    //--------------------------- DELETE  EDUCATION  ---------------------------
     $('.delhv').click(function () {
         var id = this.id
         var del_id = id.split('_')[1]
         $.ajax({
-            url: 'http://localhost/btl/admin/controller/delete-education.php?id=' + del_id + '',
+            url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/delete-education.php?id=' + del_id + '',
             type: 'get',
             success: function (res) {
                 if (res == '1') {
@@ -131,23 +132,22 @@ $(document).ready(function () {
         })
 
     })
-    //Thêm dữ liệu vào bảng kinh nghiệm 
+    //-----------------------------    ADD EXPERIENCE --------------------------
 
     $('#addexper').hide();
     $('#btnaddexper').hide()
     $('#addexperience').click(function () {
-        $('#addexper').show();
-        $('#btnaddexper').show()
+        $('#addexper').toggle();
+        $('#btnaddexper').toggle()
     })
 
     $('#btnaddexper').click(function () {
         $.ajax({
-            url: 'http://localhost/btl/admin/controller/add-experience.php',
+            url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/add-experience.php',
             dataType: 'text',
             data: {
                 date: $('#dateex').val(),
                 experience: $('#experience').val(),
-
             },
             type: 'post',
             success: function (res) {
@@ -170,12 +170,54 @@ $(document).ready(function () {
             }
         })
     })
-    // Xóa kinh nghiệm 
+    // ----------------------------   EDIT EXPERIENCE  ---------------------------
+    // viết bằng ajax, truyền dữ liệu bằng phương thức post,get
+    //get với chức năng xóa , post dùng với chức năng thêm với sửa 
+    $('#editexper').hide()
+    $('#btneditexper').hide()
+    $('.editexperience').click(function () {
+        $('#editexper').toggle(500)
+        $('#btneditexper').toggle()
+        var id = this.id    
+        var edid = id.split("_")[1]
+
+        $('#btneditexper').click(function () {
+            $.ajax({
+                url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/edit-experience.php',
+                type: 'post',
+                data: {
+                    experience: $('#edexper').val(),
+                    date : $('#eddate').val(),
+                    id: edid
+                },
+                success: function (res) {   //res lấy dl từ file 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/edit-experience.php',
+                    if (res === '1') {
+                        $('#editexper').hide()
+                        $('#btneditexper').hide()
+                       $('h4#tenkn'+edid+'').text($('#edexper').val())   // để hiển thị giá trị vừa sửa lên web
+                       $('em#thoigiankn'+edid+'').text('>'+$('#eddate').val())//
+                       edid=0 //reset lại id (sửa cái trên thì cái dưới không bị sửa theo)
+                       
+                    }
+                    else if (res === '0') {
+                        alert('Error');
+                    }
+                    else {
+                        alert(res)
+                    }
+
+                }
+            })
+        })
+        return false
+
+    })
+    // --------------------------   DELETE EXPERIENCE   ------------------------
     $('.delkn').click(function () {
         var id = this.id
         var del_id = id.split('_')[1]
         $.ajax({
-            url: 'http://localhost/btl/admin/controller/delete-experience.php?id=' + del_id + '',
+            url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/delete-experience.php?id=' + del_id + '',
             type: 'get',
             success: function (res) {
                 if (res == '1') {
@@ -187,7 +229,7 @@ $(document).ready(function () {
         })
 
     })
-    //ADD SKILL
+    //----------------------------------   ADD SKILL   --------------------------
     $('#addski').hide();
     $('#btnaddski').hide()
     $('#addskill').click(function () {
@@ -197,7 +239,7 @@ $(document).ready(function () {
 
     $('#btnaddski').click(function () {
         $.ajax({
-            url: 'http://localhost/btl/admin/controller/add-skill.php',
+            url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/add-skill.php',
             dataType: 'text',
             data: {
                 name: $('#nameskill').val(),
@@ -210,7 +252,7 @@ $(document).ready(function () {
                     $('.addski').show(1000);
                     $('.skills-content').append(" <div class='col-lg-6 kynang' data-aos='fade-up'><div class='progress'><span class='skill'> " + $('#nameskill').val() + " <i class='val'>" + $('#level').val() + "%</i></span><div class='progress-bar-wrap'><div class='progress-bar' role='progressbar' aria-valuenow=" + $('#level').val() + " aria-valuemin='0' aria-valuemax='100' style='width: " + $('#level').val() + "%;'></div></div></div></div> ")
                     $('#nameskill').val('')
-                    $('#level').val()
+                    $('#level').val('')
                     $('#addski').hide();
                     $('#btnaddski').hide()
                 }
@@ -225,18 +267,18 @@ $(document).ready(function () {
         })
 
     })
-    // ----------EDIT SKILL------------
+    // ----------------------------     EDIT SKILL     --------------------------
     $('#skski').hide()
     $('#btneditski').hide()
     $('.editskill').click(function () {
         $('#skski').toggle(500)
         $('#btneditski').toggle()
-        var id = this.id    
+        var id = this.id    //lấy giá trị id
         var edid = id.split("_")[1]
 
         $('#btneditski').click(function () {
             $.ajax({
-                url: 'http://localhost/btl/admin/controller/edit-skill.php',
+                url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/edit-skill.php',
                 type: 'post',
                 data: {
                     name: $('#ednameskill').val(),
@@ -248,7 +290,7 @@ $(document).ready(function () {
                         $('#skski').hide()
                         $('#btneditski').hide()
                         $("#sk_"+edid+"").html(" <div class='col-lg-6 kynang' data-aos='fade-up' id='sk_"+edid+"'><div class='progress'><span class='skill'>"+ $('#ednameskill').val()+" <i class='val'>"+$('#edlevel').val()+"% </i></span><div class='progress-bar-wrap'><div class='progress-bar' role='progressbar' aria-valuenow='"+$('#edlevel').val()+"' aria-valuemin='0' aria-valuemax='100' style='width: " + $('#edlevel').val() + "%;'></div></div></div><button name='' class='btn btn-primary mb-5 editskill' id='editsk_"+edid+"'>Sửa</button></div> ")
-
+                        //dùng để thay cả thẻ lẫn giá trị trong skill để hiển thị lên khi sửa 
                     }
                     else if (res === '0') {
                         alert('Error');
@@ -264,47 +306,8 @@ $(document).ready(function () {
     })
 
 
-     // ----------   EDIT EXPERIENCE  ------------
-     $('#editexper').hide()
-     $('#btneditexper').hide()
-     $('.editexperience').click(function () {
-         $('#editexper').toggle(500)
-         $('#btneditexper').toggle()
-         var id = this.id    
-         var edid = id.split("_")[1]
- 
-         $('#btneditexper').click(function () {
-             $.ajax({
-                 url: 'http://localhost/btl/admin/controller/edit-experience.php',
-                 type: 'post',
-                 data: {
-                     experience: $('#edexper').val(),
-                     date : $('#eddate').val(),
-                     id: edid
-                 },
-                 success: function (res) {
-                     if (res === '1') {
-                         $('#editexper').hide()
-                         $('#btneditexper').hide()
-                        $('h4#tenkn'+edid+'').text($('#edexper').val())
-                        $('em#thoigiankn'+edid+'').text('>'+$('#eddate').val())
-                        edid=0
-                        
-                     }
-                     else if (res === '0') {
-                         alert('Error');
-                     }
-                     else {
-                         alert(res)
-                     }
- 
-                 }
-             })
-         })
-         return false
- 
-     })
-//-----------------------THÊM DỰ ÁN------------------------------
+     
+//-----------------------        ADD PROJECT          ------------------------------
 
 $('#addpro').hide();
 $('#btnaddpro').hide()
@@ -315,7 +318,7 @@ $('#addproject').click(function () {
 
 $('#btnaddpro').click(function () {
     $.ajax({
-        url: 'http://localhost/btl/admin/controller/add-project.php',
+        url: 'http://localhost/CSE485_1851061774_HoangThiHuyen/admin/controller/add-project.php',
         dataType: 'text',
         data: {
            
@@ -330,10 +333,10 @@ $('#btnaddpro').click(function () {
             if (res === '1') {
                 $('.addpro').hide(1000);
                 $('#listduan').append(" <tr><td>"+$('#nameproject').val()+"</td><td>"+$('#description').val()+"</td><td>"+$('#location').val()+"</td><td>"+$('#role').val()+"</td><tr> ")
-                $('#nameproject').val()
-                $('#description').val()
-                $('#location').val()
-                $('#role').val()
+                $('#nameproject').val('')
+                $('#description').val('')
+                $('#location').val('')
+                $('#role').val('')
                 $('#addproject').show();
                 $('#btnaddpro').hide()
 
